@@ -27,14 +27,11 @@ public class Fusil : MonoBehaviour
 
         lastFireTime = Time.time;
 
-        // Effet visuel
         muzzleFlash.Play();
 
-        // Son de tir
         if (shootSound != null)
             audioSource.PlayOneShot(shootSound);
 
-        // Projectile
         GameObject bullet = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation);
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.linearVelocity = muzzle.forward * bulletSpeed;
