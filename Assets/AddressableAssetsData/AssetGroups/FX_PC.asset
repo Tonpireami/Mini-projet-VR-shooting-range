@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: FX_PC
+  m_EditorClassIdentifier: 
+  m_GroupName: FX_PC
+  m_GUID: e95a652b5ff510548a307860c1cfe55c
+  m_SerializeEntries:
+  - m_GUID: 347623e97fbd850449c8df1e49082acb
+    m_Address: Impact_PC
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6496c724a65f36944b656f9baba99762
+    m_Address: ParticleTir_PC
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ac16779f9edd26a4282d8e8af89052a7
+    m_Address: Explosion_PC
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 2ad975afec009be48938c0df4814f97c, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c4b18253c8fbefa47b0f11f3886db142, type: 2}
+    - {fileID: 11400000, guid: fab47eedb80158744a78874a3c80c5b6, type: 2}

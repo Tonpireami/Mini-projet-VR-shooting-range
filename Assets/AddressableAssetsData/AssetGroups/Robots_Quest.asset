@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Robots_Quest
+  m_EditorClassIdentifier: 
+  m_GroupName: Robots_Quest
+  m_GUID: 188dbed567b358e4087c6d3d05ad94aa
+  m_SerializeEntries:
+  - m_GUID: 12ac22056fea33e42920993793619f62
+    m_Address: Scout2_Quest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7fbd7b9ff31f72b4d8464e7841350080
+    m_Address: Scout_Quest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 90856c3c9ca03464bb629b5ebf6bc059
+    m_Address: Guardian2_Quest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 925bb6a52a5be2f4fadbc4f9cbbf4a60
+    m_Address: Invader_Quest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c40dcd28c1f6b124c900d5b9ef96b14b
+    m_Address: Invader2_Quest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e97fbaaff5b1b154d9df15ac1bdfbf15
+    m_Address: Guardian_Quest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 2ad975afec009be48938c0df4814f97c, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 5cc6a2cce89dd9c458d88f98d0b977dc, type: 2}
+    - {fileID: 11400000, guid: bb40dc2eb75a6a2478714c0cbfa0ec1e, type: 2}
