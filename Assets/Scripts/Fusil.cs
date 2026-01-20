@@ -3,9 +3,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Fusil : MonoBehaviour
 {
-    public ParticleSystem muzzleFlash;
     public Transform muzzle;
-    public GameObject bulletPrefab;
     public float bulletSpeed = 20f;
     public float fireRate = 0.3f;
 
@@ -13,7 +11,7 @@ public class Fusil : MonoBehaviour
     public AudioClip shootSound;
     private AudioSource audioSource;
 
-    float lastFireTime;
+    private float lastFireTime;
 
     private void Awake()
     {
@@ -27,15 +25,32 @@ public class Fusil : MonoBehaviour
 
         lastFireTime = Time.time;
 
-        muzzleFlash.Play();
+        // 🔥 Spawn du MuzzleFlash Addressable
+        GameObject muzzleFX = FXManager.Instance.GetMuzzleFX();
+        if (muzzleFX != null)
+        {
+            GameObject fx = Instantiate(muzzleFX, muzzle.position, muzzle.rotation);
+
+            float maxDuration = 0f;
+            foreach (var ps in fx.GetComponentsInChildren<ParticleSystem>())
+            {
+                if (ps.main.duration > maxDuration)
+                    maxDuration = ps.main.duration;
+            }
+
+            Destroy(fx, maxDuration + 0.5f);
+        }
 
         if (shootSound != null)
             audioSource.PlayOneShot(shootSound);
 
-        GameObject bullet = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation);
+        GameObject bullet = ObjectPool.Instance.SpawnFromPool(
+            "Projectile",
+            muzzle.position,
+            muzzle.rotation
+        );
+
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.linearVelocity = muzzle.forward * bulletSpeed;
-
-        Destroy(bullet, 5f);
     }
 }

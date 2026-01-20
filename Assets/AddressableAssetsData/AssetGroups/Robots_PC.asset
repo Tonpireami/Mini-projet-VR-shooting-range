@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Robots_PC
+  m_EditorClassIdentifier: 
+  m_GroupName: Robots_PC
+  m_GUID: fada11e598c187440b077b2ead37cc50
+  m_SerializeEntries:
+  - m_GUID: 05aadd4aba3a3b54d8863edb0288e118
+    m_Address: Guardian
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23b054e2ed36de549865179f2c546d0f
+    m_Address: Invader2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 600bf4de60f87b64cb9d48b12eec668e
+    m_Address: Guardian2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8782b3f1cbfb04f4fa05f7192ffc85f2
+    m_Address: Scout
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c95bcd1443a587f4482df77db9fdc3f0
+    m_Address: Scout2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb28db2818c975f4eba7522b2ea286c7
+    m_Address: Invader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 2ad975afec009be48938c0df4814f97c, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 26c6c303ac2693241a6c953511a37b06, type: 2}
+    - {fileID: 11400000, guid: c4454f91e67e3864ba8e0c07d2047500, type: 2}
