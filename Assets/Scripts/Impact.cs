@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class Impact : MonoBehaviour
 {
-    private GameObject impactPrefab;
     private Projectile projectile;
 
     private void Awake()
     {
         projectile = GetComponent<Projectile>();
-        impactPrefab = FXManager.Instance.GetImpactFX();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Cible"))
         {
+            GameObject impactPrefab = FXManager.Instance.GetImpactFX();
+
             if (impactPrefab != null)
             {
                 GameObject impact = Instantiate(
@@ -29,27 +29,19 @@ public class Impact : MonoBehaviour
                     if (ps.main.duration > maxDuration)
                         maxDuration = ps.main.duration;
                 }
-
-                Destroy(impact, maxDuration + 0.5f);
             }
 
-            projectile.Disable();
+            projectile.DisableProjectile();
         }
 
-        // 🎯 ICI : la cible spéciale
         if (collision.gameObject.CompareTag("Speciale"))
         {
-    #if UNITY_ANDROID
-            return; // Sur Quest : on ignore l'easter egg
-    #endif
+#if UNITY_ANDROID
+            return;
+#endif
 
-            // Détruire la cible spéciale
             Destroy(collision.gameObject);
-
-            // Désactiver le projectile
-            projectile.Disable();
-
-            // 🎉 Lancer la séquence spéciale
+            projectile.DisableProjectile();
             SpecialEventManager.Instance.TriggerSpecialSequence();
         }
     }

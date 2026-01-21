@@ -1,31 +1,23 @@
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
+using System.Collections;
 using System.Collections.Generic;
 
 public class TargetSpawner : MonoBehaviour
 {
-    [Header("Spawn Points")]
     public Transform[] spawnPoints;
-    private bool[] spawnOccupied;
 
-    [Header("Robot Base Tags")]
-    public string[] robotBaseTags; // ex: "Guardian", "Invader", "Scout"
+    public string[] robotBaseTags;
 
-    [Header("Settings")]
-    public int maxTargets = 3;
+    public float spawnInterval = 1.5f;
 
-    private int activeTargets = 0;
-    private int lastSpawnIndex = -1;
-
-    // Liste des tags adaptés à la plateforme (ex: "Guardian_Quest" ou "Guardian")
     private string[] platformTags;
+    private bool[] spawnOccupied;
+    private int lastSpawnIndex = -1;
 
     private void Start()
     {
         spawnOccupied = new bool[spawnPoints.Length];
 
-        // Adapter les tags selon la plateforme
 #if UNITY_ANDROID
         platformTags = new string[robotBaseTags.Length];
         for (int i = 0; i < robotBaseTags.Length; i++)
@@ -34,39 +26,22 @@ public class TargetSpawner : MonoBehaviour
         platformTags = robotBaseTags;
 #endif
 
-        // Spawn initial
-        for (int i = 0; i < maxTargets; i++)
-            SpawnOneTarget();
+        StartCoroutine(SpawnLoop());
     }
 
-    public void SpawnOneTarget()
+    private IEnumerator SpawnLoop()
     {
-        if (activeTargets >= maxTargets)
-            return;
+        while (true)
+        {
+            yield return new WaitForSeconds(spawnInterval);
 
-        int spawnIndex = GetFreeSpawnPoint();
-        if (spawnIndex == -1)
-            return;
-
-        string tag = platformTags[Random.Range(0, platformTags.Length)];
-
-        GameObject target = ObjectPool.Instance.SpawnFromPool(
-            tag,
-            spawnPoints[spawnIndex].position,
-            spawnPoints[spawnIndex].rotation
-        );
-
-        Target t = target.GetComponent<Target>();
-        t.Initialize(this, spawnIndex);
-
-        spawnOccupied[spawnIndex] = true;
-        activeTargets++;
-    }
-
-    public void FreeSpawnPoint(int index)
-    {
-        spawnOccupied[index] = false;
-        activeTargets--;
+            if (GameplayManager.Instance.currentTargets < GameplayManager.Instance.maxTargets)
+            {
+                int index = GetFreeSpawnPoint();
+                if (index != -1)
+                    SpawnOneTargetAt(index);
+            }
+        }
     }
 
     private int GetFreeSpawnPoint()
@@ -89,5 +64,27 @@ public class TargetSpawner : MonoBehaviour
         lastSpawnIndex = chosen;
 
         return chosen;
+    }
+
+    private void SpawnOneTargetAt(int index)
+    {
+        string tag = platformTags[Random.Range(0, platformTags.Length)];
+
+        GameObject target = ObjectPool.Instance.SpawnFromPool(
+            tag,
+            spawnPoints[index].position,
+            spawnPoints[index].rotation
+        );
+
+        Target t = target.GetComponent<Target>();
+        t.Initialize(this, index);
+
+        spawnOccupied[index] = true;
+        GameplayManager.Instance.RegisterTargetSpawn();
+    }
+
+    public void FreeSpawnPoint(int index)
+    {
+        spawnOccupied[index] = false;
     }
 }

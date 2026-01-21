@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Target : MonoBehaviour
 {
@@ -11,9 +12,10 @@ public class Target : MonoBehaviour
 
     public void Initialize(TargetSpawner spawnerRef, int index)
     {
-        explosionPrefab = FXManager.Instance.GetExplosionFX();
         spawner = spawnerRef;
         spawnIndex = index;
+
+        explosionPrefab = FXManager.Instance.GetExplosionFX();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -21,11 +23,12 @@ public class Target : MonoBehaviour
         if (collision.gameObject.CompareTag("Projectile"))
         {
             SpawnExplosion();
+            GameplayManager.Instance.AddScore(5);
             Disable();
         }
     }
 
-    void SpawnExplosion()
+    private void SpawnExplosion()
     {
         if (explosionPrefab == null)
             return;
@@ -42,14 +45,18 @@ public class Target : MonoBehaviour
             if (ps.main.duration > maxDuration)
                 maxDuration = ps.main.duration;
         }
-
-        Destroy(explosion, maxDuration + 0.5f);
     }
 
     public void Disable()
     {
         spawner.FreeSpawnPoint(spawnIndex);
+        GameplayManager.Instance.RegisterTargetDespawn();
+        StartCoroutine(DisableAfterFrame());
+    }
+
+    private IEnumerator DisableAfterFrame()
+    {
+        yield return null;
         gameObject.SetActive(false);
-        spawner.SpawnOneTarget();
     }
 }
