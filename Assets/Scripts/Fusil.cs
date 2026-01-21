@@ -7,7 +7,6 @@ public class Fusil : MonoBehaviour
     public float bulletSpeed = 20f;
     public float fireRate = 0.3f;
 
-    [Header("Audio")]
     public AudioClip shootSound;
     private AudioSource audioSource;
 
@@ -25,7 +24,6 @@ public class Fusil : MonoBehaviour
 
         lastFireTime = Time.time;
 
-        // 🔥 Spawn du MuzzleFlash Addressable
         GameObject muzzleFX = FXManager.Instance.GetMuzzleFX();
         if (muzzleFX != null)
         {
@@ -37,8 +35,6 @@ public class Fusil : MonoBehaviour
                 if (ps.main.duration > maxDuration)
                     maxDuration = ps.main.duration;
             }
-
-            Destroy(fx, maxDuration + 0.5f);
         }
 
         if (shootSound != null)

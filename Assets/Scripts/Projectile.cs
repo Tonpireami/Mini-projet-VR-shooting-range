@@ -2,35 +2,17 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private Rigidbody rb;
-    private float lifeTimer = 0f;
-    public float maxLifeTime = 5f;
-
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
+    [HideInInspector] public Vector3 startPosition;
 
     private void OnEnable()
     {
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        lifeTimer = 0f;
+        startPosition = transform.position;
+        ProjectilePoolManager.Instance.RegisterProjectile(this);
     }
 
-    private void Update()
+    public void DisableProjectile()
     {
-        lifeTimer += Time.deltaTime;
-        if (lifeTimer >= maxLifeTime)
-        {
-            Disable();
-        }
-    }
-
-    public void Disable()
-    {
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
         gameObject.SetActive(false);
+        ProjectilePoolManager.Instance.UnregisterProjectile(this);
     }
 }

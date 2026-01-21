@@ -19,7 +19,7 @@ public class ObjectPool : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        
+
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
         foreach (Pool pool in pools)
@@ -41,17 +41,30 @@ public class ObjectPool : MonoBehaviour
     {
         if (!poolDictionary.ContainsKey(tag))
         {
-            Debug.LogWarning($"Pool with tag {tag} doesn't exist.");
             return null;
         }
 
-        GameObject obj = poolDictionary[tag].Dequeue();
+        Queue<GameObject> queue = poolDictionary[tag];
 
-        obj.SetActive(true);
+        GameObject obj = null;
+
+        foreach (var item in queue)
+        {
+            if (!item.activeInHierarchy)
+            {
+                obj = item;
+                break;
+            }
+        }
+
+        if (obj == null)
+        {
+            return null;
+        }
+
         obj.transform.position = position;
         obj.transform.rotation = rotation;
-
-        poolDictionary[tag].Enqueue(obj);
+        obj.SetActive(true);
 
         return obj;
     }
