@@ -6,12 +6,12 @@ public class RainbowFilter : MonoBehaviour
     public float speed = 1f;
     private Image img;
     private float hue = 0f;
-    private float alpha; // on stocke l'alpha d'origine
+    private float alpha;
 
     void Start()
     {
         img = GetComponent<Image>();
-        alpha = img.color.a; // on garde l'opacité définie dans l'inspector
+        alpha = img.color.a;
     }
 
     void Update()
@@ -20,7 +20,7 @@ public class RainbowFilter : MonoBehaviour
         if (hue > 1f) hue -= 1f;
 
         Color c = Color.HSVToRGB(hue, 1f, 1f);
-        c.a = alpha; // on remet l'opacité d'origine
+        c.a = alpha;
         img.color = c;
     }
 }

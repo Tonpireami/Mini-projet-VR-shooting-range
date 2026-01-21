@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 89709090748456566}
   - component: {fileID: 7969977292899694801}
+  - component: {fileID: 1819244513471649932}
   m_Layer: 0
   m_Name: ExplosionQuest
   m_TagString: Untagged
@@ -131,6 +132,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1819244513471649932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101081786259788005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0295f3af98f27ef40a5b7494f7a927eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 2.9
 --- !u!1 &1827994128172103510
 GameObject:
   m_ObjectHideFlags: 0
